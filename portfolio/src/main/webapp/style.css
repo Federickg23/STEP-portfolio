@@ -1,3 +1,46 @@
+.flex-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  justify-content: center; 
+  flex-wrap: wrap;
+  min-width: 320px;
+  max-width: 1220px;
+}
+
+h1{
+    text-align: center;
+
+}
+
+.flex-item {
+  display:flex;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+  justify-content: space-around;
+  margin: 3px;
+  padding: 10px 0 0 10px;
+}
+
+.flex-item img{
+  padding: 20px;
+  flex-grow:0;
+  flex-shrink:0;
+}
+.flex-item p{
+  font-size=14px;
+  font-family: 'Nanum Myeongjo', serif;
+}
+
+span {
+  padding-left: 5px;
+  
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
@@ -143,6 +186,9 @@ body {
   /* Full height */
   height: 100%;
 
+  max-width: 99%;
+  max-height: 100vh;
+
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
@@ -166,3 +212,4 @@ body {
   padding: 20px;
   text-align: center;
 }
+
