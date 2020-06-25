@@ -15,6 +15,21 @@
 /**
  * Adds a random greeting to the page.
  */
+
+function Random() {
+    var rnd = Math.floor(Math.random() * 20 + 1);
+    document.getElementById('tb').value = rnd;
+    document.getElementById('button').style.display='none';
+    if(rnd > 11){
+        document.getElementById('highRoller').style.display='block';
+        document.getElementById('lowRoller').style.display='none';
+    }
+    else{
+        document.getElementById('highRoller').style.display='none';
+        document.getElementById('lowRoller').style.display='block';
+    }
+}
+    
 function addRandomGreeting() {
   const greetings =
       ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];

@@ -1,3 +1,106 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+  justify-content: center;
+  width: 90%;
+  margin: auto;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  margin: 0 4px;
+  max-width: 30%;
+  
+}
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  max-width: 500px;
+  min-width: 200px;
+  max-height: 700px;
+  width: 90%;
+}
+
+.video-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: stretch;
+  align-content: space-around;
+  justify-content: center; 
+  flex-wrap: wrap;
+  min-width: 320px;
+  min-height:200px;
+  width:60%;
+  margin:auto;
+}
+
+.video-item {
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0 0 10px;
+}
+
+.video-item span{
+    margin-left:20px;
+}
+
+.video-item iframe{
+    width: 747px;
+    height: 200px;
+
+}
+
+#highRoller, #lowRoller{
+    display:none;
+     background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    width:70%;
+    margin:auto auto 40px auto; 
+
+
+}
+.initiative form{
+    align-content: baseline;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20%;
+}
+.myButton {
+	box-shadow:inset 0px 0px 15px 3px #ad0707;
+	background:linear-gradient(to bottom, #ffffff 5%, #02060f 100%);
+	background-color:#ffffff;
+	border-radius:17px;
+	border:1px solid #1f2f47;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:15px;
+	padding:6px 13px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #8f8511;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #02060f 5%, #ffffff 100%);
+	background-color:#02060f;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+        
+
 div.gallery {
   margin: 5px;
   border: 1px solid #ccc;
@@ -36,7 +139,7 @@ div.desc {
   margin-right: auto;
   width: 70%;
   text-align: center; 
-  padding-bottom: 20%;
+  padding-bottom: 5%;
 }
 
 .profiles img{
@@ -74,8 +177,8 @@ h1{
     color: white;
     font-weight: bold;
     border: 3px solid #f1f1f1;
-    width=50%;
-    padding=40px;
+    width:70%;
+    margin:auto auto 40px auto; 
 }
 
 h3{
@@ -87,10 +190,9 @@ h3{
 .flex-item {
   display:flex;
   align-items: center;
-  height: 300px;
+  height: 200px;
   width: 80%;
   justify-content: space-around;
-  margin: 3px;
   padding: 10px 0 0 10px;
 }
 
@@ -98,12 +200,16 @@ h3{
   padding: 20px;
   flex-grow:0;
   flex-shrink:0;
-  border-radius: 8px;
-  height: 250px;
-  width: 250px;
+  border-radius: 60px;
 }
-.flex-item p{
-  font-size=16px;
+
+#square{
+    height:250px;
+    width:250px;
+}
+
+p{
+  font-size:16px;
   font-family: 'Nanum Myeongjo', serif;
 }
 

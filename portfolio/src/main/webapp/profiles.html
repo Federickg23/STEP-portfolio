@@ -21,8 +21,7 @@
                 <div class="dropdown-content">
                     <a href="photography.html">Photos</a>
                      <a href="art.html">Art</a>
-                    <a href="#">Martial Art</a>
-                    <a href="#">Hidden Talent</a>
+                    <a href="martialArt.html">MMA</a>
                 </div> 
             </div>
         </div>
@@ -31,6 +30,61 @@
         <h1>Let's connect!</h1>
         <h3>Building a network is really good, I've been told. Help me build mine by building yours as well!<h3>
     </div>
+    <form class="initiative" name="rn" style="align-content: baseline;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20%;">
+        <input type="text" id="tb" name="tb" />
+        <input id="button" type="button" value="Roll Initiative!" class="myButton" onclick="Random();" />
+    </form>
+    <div id="highRoller" style="align-content: baseline;
+    margin: auto;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30%;">
+        
+        <h2 id="successMessage">You rolled high! Attack first! (send me an email)</h2>
+
+        <form action="http://formspree.io/federickg23@gmail.com" method="POST">
+             <label>
+                Your email:
+                <input type="text" name="_replyto">
+            </label>
+            <br>
+            <label>
+                Your message:
+                <textarea name="message"></textarea>
+            </label> 
+            <input type="hidden" name="_next" value="thanks.html"/>
+            <input type="submit"/>
+        </form>
+    </div>
+    
+    <div id="lowRoller" style="align-content: baseline;
+    margin: auto;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30%;">
+        
+        <h2 id="failMessage">You rolled low! I Attack first! (I will send you an email)</h2>
+
+        <form action="http://formspree.io/federickg23@gmail.com" method="POST">
+            <label>
+                Your email:
+                <input type="text" name="_replyto">
+            </label>
+            <label>
+                Requested subject:
+                <input type="text" name="_subject">
+            </label>
+            <input type="textarea" style="display:none;"  name="message" placeholder="Send this person an email about the subject" />
+            <input type="hidden" name="_next" value="thanks.html"/>
+            <input type="submit"/>
+        </form>
+    </div>
+    
     <div class="profiles">
         <a target="_blank" href="https://instagram.com/federickgonzalez" ><img border="0" alt="instagram: @federickgonzalez" src="https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png"></a>    
         <a target="_blank"href="https://www.facebook.com/federickg23"><img border="0" alt="Facebook: federick gonzalez" src="https://www.freepnglogos.com/uploads/facebook-icons/facebook-icon-transparent-background-3.png"></a>    
