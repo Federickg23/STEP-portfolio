@@ -2,17 +2,86 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Federick's Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
     <script src="script.js"></script>
   </head>
   <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <div class="header">
+        <a href="index.html" class="logo">Federick Gonzalez</a>
+        <div class="header-right">
+            <a class="active" href="#home">Home</a>
+            <a href="profiles.html">Profiles</a>
+            <div class="dropdown">
+                <button onclick="location.href = 'family.html';" class="dropbtn">More
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="photography.html">Photos</a>
+                     <a href="art.html">Art</a>
+                    <a href="martialArt.html">MMA</a>
+                </div> 
+            </div>
+        </div>
     </div>
+     <div class="bg-image" style="background: url('images/teachingBackground.JPG');"></div>
+     <img class="bg-image" src="/images/teachingBackground.JPG">
+     <div class="bg-text">
+        <h1>Federick Gonzalez</h1>
+        <p>Aspiring Programmer, along with other things</p>
+     </div>
+     <h1>About Me</h1>
+        <div class="flex-container">
+            <div class="flex-item" ><img id="square" src="images/romeHeadshot.JPG">
+                <span class="flex-item" > <p class="flex-item"> My name is Federick Gonzalez! I'm 
+                  currently a rising junior at Colubmia University in the City of New York (And more 
+                  specificially the FU Foundation School of Engineering and Applied Science). I have 
+                  been programming since my freshman year of High School, in 2014, and I have learned 
+                  so much in that span. Whether by picking up Java in AP Computer Science, Python and 
+                  other languages in Google's CSSI program, or experimenting on my own. I've always 
+                  enjoyed CS ever since I've discovered it, and hope to futher expand upon my skills!
+                </p></span>
+             </div>
+             <div class="flex-item">
+             <span class="flex-item"> <p class="flex-item"> I have a variety of interests, both in terms
+               of CS material and otherwise. Some of the courses I've had the privilege to take so far 
+               include Artificial Intelligence, Visual Interfaces and Advanced Programming, along with 
+               other courses. Some of my interests lie in the linguistics field, so I'm rather excited 
+               to learn about Spoken Language and Natural  Languages processing in the coming years. I 
+               also enjoy discovering how things work, so Programming Languages and Translators lies 
+               somewhere in my (hopefully near) future.  
+             </p></span>
+             <img src="images/fedGoogle.jpg" id="square">
+            
+            </div>
+            
+            <div class="flex-item"><img src="images/fedGoogleBlack.jpg" style="width:475px; height:308px; margin-top:100px;"> </div>
+            <span class="flex-item"style="margin-top:80px;"><p >Now that the academic information is out of
+              the way, a little more about me. I was born in Miami, Florida, though recently I spend a majority
+              of my year in New York. As someone who really enjoys the cold, it is quite a welcome change to see 
+              seasons in a place where I reside! I have a variety of interests and hobbies, and spend most of my
+              free time either doing Wushu, listening to music, playing music, or drawing. Occasionally I take 
+              photos as well! I am a trombone player, and have been for about 10 years at this point. I am now 
+              a member of Columbia Pops, an orchestra that plays popular music, and soon I'll be a conductor as 
+              well! I am also the President of Columbia Wushu, which is a performance-based martial arts group. 
+              In the rest of the time, I'm also a Dungeon Master, a DND Player, and a member of my school's Game
+              Development Club. It's a busy schedule, but it's all enjoyable!</p></span>
+            <span class="flex-item"style="margin-bottom:60px;"><p>As previously stated, I have multiple interests,
+              and have held multiple for the majority of my life. This is one of the things that has always 
+              attracted me to computer science, it has countless possibilities and seemingly infinite applications.
+              When I discovered Computer Science, I was just a freshman in high school who imagined that I would be
+              a doctor or biomedical engineer of some sort, not knowing what I was getting myself into. I discovered 
+              programming in the context of robotics, learned that it can be used to create applications, then found 
+              out how to make websites and realized just how versatile it is. I really enjoy the fact that each 
+              problem is like a puzzle, there is not always a clear solution, and you have to work and test to find 
+              out how to solve it, usually b y doing something clever and discovering there was something incredibly 
+              simple you just hadn't thought of. It has always been fun, and as I learn more about the field, my 
+              interest continues to grow. I hope to stay in the field as long as possible, and build up my list of 
+              completed projects! </p></span>
+            </div>
+        
+     </div>
   </body>
 </html>
