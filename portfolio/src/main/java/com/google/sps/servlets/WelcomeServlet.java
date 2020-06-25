@@ -13,7 +13,7 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
-import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,26 +22,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+/** Servlet that returns a welcome message.*/
+@WebServlet("/welcome")
+public class WelcomeServlet extends HttpServlet {
+    
   private List<String> messages;
 
   @Override
   public void init() {
     messages = new ArrayList<>();
-    messages.add("This is a tester message");
-    messages.add("Another test message!");
-    messages.add("Nice page you've got here");
-    messages.add("Wow comment section");
+    messages.add("Welcome to my page");
+    messages.add("It's a pleasure to meet you");
+    messages.add("Nice to meet you, I hope you enjoy the page");
+    messages.add("Hello There");
   }
-
-
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json;");
-    String json = new Gson().toJson(messages);
-    response.getWriter().println(json);
+    String message = messages.get((int) (Math.random() * messages.size()));
+
+    response.setContentType("text/html;");
+    response.getWriter().println(message);
   }
 }

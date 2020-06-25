@@ -41,3 +41,27 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function welcomeMessage() {
+  fetch('/welcome').then(response => response.text()).then((quote) => {
+    document.getElementById('welcome').innerText = quote;
+  });
+}
+
+function getMessages() {
+  fetch('/data').then(response => response.json()).then((data) => {
+//    console.log(data);
+    const messageElement = document.getElementById('message-container');
+    messageElement.innerHTML = '';
+    for (i=0; i < data.length; i++) {
+        messageElement.appendChild(createListElement(data[i]));
+    }
+
+ });
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
