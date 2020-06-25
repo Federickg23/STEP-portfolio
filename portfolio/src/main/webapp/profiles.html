@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getMessages()">
     <div class="header">
         <a href="index.html" class="logo">Federick Gonzalez</a>
         <div class="header-right">
@@ -92,7 +92,16 @@
         <a target="_blank"href="https://open.spotify.com/user/0ygk12pkm4mtvw2lpls0d14n5" ><img border="0" alt="spotify: Celembrior" src="https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"></a>    
         <a target="_blank"href="https://www.linkedin.com/in/federick-gonzalez-062631168/" ><img border="0" alt="linkedin: federick gonzalez" src="https://1000logos.net/wp-content/uploads/2017/03/LinkedIn-Logo.png"></a>    
    </div>
-   <button onclick="getMessages()">Fetch messages!</button>
-   <ul id="message-container"></ul>
+   <form action="/data" method="POST">
+
+      <p>Subtract:</p>
+      <input type="text" name="comment" placeholder="Insert comment here!">
+      <br/><br/>
+
+      <input type="submit" />
+
+  </form>
+  
+  <ul id="message-container"></ul>
   </body>
 </html>
