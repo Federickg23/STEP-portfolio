@@ -48,6 +48,9 @@ public class DataServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
+    //System.out.println(request.getParameter("amt"));
+    int amt = 5; //Integer.parseInt(request.getParameter("amt"));
+    //Hardcoded amount to see if it was the amount giving an error, turns out it isn't 
 
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
@@ -58,11 +61,17 @@ public class DataServlet extends HttpServlet {
       Comment comment = new Comment(id, message, timestamp);
       comments.add(comment);
     }
-
+    System.out.println("Comments array size: ");
+    System.out.println(comments.size());
+    while (comments.size() > amt) comments.remove(comments.size() - 1);
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
+    String returnVal = gson.toJson(comments);
+    System.out.println(returnVal);
+    //At this point, json seems to be fine, but then i get an error in the console. 
     response.getWriter().println(gson.toJson(comments)); 
+    response.sendRedirect("/profiles.html");
   }
 
   @Override

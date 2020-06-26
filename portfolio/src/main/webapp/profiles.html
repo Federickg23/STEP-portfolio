@@ -92,6 +92,12 @@
         <a target="_blank"href="https://open.spotify.com/user/0ygk12pkm4mtvw2lpls0d14n5" ><img border="0" alt="spotify: Celembrior" src="https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"></a>    
         <a target="_blank"href="https://www.linkedin.com/in/federick-gonzalez-062631168/" ><img border="0" alt="linkedin: federick gonzalez" src="https://1000logos.net/wp-content/uploads/2017/03/LinkedIn-Logo.png"></a>    
    </div>
+
+    <form action="/data" method="GET">
+        <label for="quantity">How many comments would you like to see? (between 1 and 10):</label>
+        <input type="number" id="max-comments" name="max-comments" min="1" max="10">
+        <input type="submit">
+    </form>
    <form action="/data" method="POST">
 
       <p>Comment Section:</p>

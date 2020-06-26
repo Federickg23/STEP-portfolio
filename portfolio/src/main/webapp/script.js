@@ -49,6 +49,8 @@ function welcomeMessage() {
 }
 
 function getMessages() {
+  //Called on load, indended to access the database, and return messages as list items  
+  
   fetch('/data').then(response => response.json()).then((messages) => {
     console.log(messages);
     const messageElement = document.getElementById('message-container');
