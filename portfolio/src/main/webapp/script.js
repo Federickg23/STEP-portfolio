@@ -49,14 +49,12 @@ function welcomeMessage() {
 }
 
 function getMessages() {
-  fetch('/data').then(response => response.json()).then((data) => {
-//    console.log(data);
+  fetch('/data').then(response => response.json()).then((messages) => {
+    console.log(messages);
     const messageElement = document.getElementById('message-container');
-    messageElement.innerHTML = '';
-    for (i=0; i < data.length; i++) {
-        messageElement.appendChild(createListElement(data[i]));
-    }
-
+    messages.forEach((message) =>{
+        messageElement.appendChild(createMessageElement(message));
+    })
  });
 }
 
@@ -64,4 +62,26 @@ function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
+}
+
+
+function createMessageElement(message) {
+  const messageElement = document.createElement('li');
+  messageElement.className = 'message';
+
+  const titleElement = document.createElement('span');
+  titleElement.innerText = message.message;
+  /*
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteMessage(message);
+
+    // Remove the task from the DOM.
+    messageElement.remove();
+  });
+ */
+  messageElement.appendChild(titleElement);
+  //messageElement.appendChild(deleteButtonElement);
+  return messageElement;
 }
