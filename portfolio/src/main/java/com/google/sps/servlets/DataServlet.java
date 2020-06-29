@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private List<String> messages;
-
+  private int amt;
   @Override
   public void init() {
     messages = new ArrayList<>();
@@ -49,9 +49,11 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     //System.out.println(request.getParameter("amt"));
-    int amt = 5; //Integer.parseInt(request.getParameter("amt"));
+    //Integer.parseInt(request.getParameter("amt"));
     //Hardcoded amount to see if it was the amount giving an error, turns out it isn't 
-
+    System.out.print(request.getParameter("max-comments")); 
+    amt = Integer.parseInt(request.getParameter("max-comments"));
+    System.out.println("Amount in get method: " + amt);
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
@@ -68,26 +70,35 @@ public class DataServlet extends HttpServlet {
 
     response.setContentType("application/json;");
     String returnVal = gson.toJson(comments);
-    System.out.println(returnVal);
+    //System.out.println("{\"message\": 13}")
     //At this point, json seems to be fine, but then i get an error in the console. 
-    response.getWriter().println(gson.toJson(comments)); 
-    response.sendRedirect("/profiles.html");
+    //response.getWriter().println(gson.toJson(comments)); 
+    response.getWriter().println(returnVal);
+    //response.sendRedirect("/profiles.html");
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String text = request.getParameter("comment");
-    messages.add(text);
-    long timestamp = System.currentTimeMillis();
+    String text = "";
+    text = request.getParameter("comment");
+    try{
+        System.out.print(request.getParameter("max-comments")); 
+        amt = Integer.parseInt(request.getParameter("max-comments"));
+    }catch(Exception e){
+        System.out.println(e);
+    }
+    if(text != null && !text.isEmpty()){
+        messages.add(text);
+        long timestamp = System.currentTimeMillis();
 
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("message", text);
-    commentEntity.setProperty("timestamp", timestamp);
+        Entity commentEntity = new Entity("Comment");
+        commentEntity.setProperty("message", text);
+        commentEntity.setProperty("timestamp", timestamp);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
-
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        datastore.put(commentEntity);
+    }
     response.sendRedirect("/profiles.html");
   }
 }

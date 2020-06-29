@@ -48,16 +48,20 @@ function welcomeMessage() {
   });
 }
 
-function getMessages() {
-  //Called on load, indended to access the database, and return messages as list items  
-  
-  fetch('/data').then(response => response.json()).then((messages) => {
-    console.log(messages);
-    const messageElement = document.getElementById('message-container');
-    messages.forEach((message) =>{
-        messageElement.appendChild(createMessageElement(message));
-    })
- });
+async function getMessages() { 
+  var url = '/data?max-comments=';
+  url+=document.getElementById('max-comments').value;
+  console.log(url);
+  const response = await fetch(url);
+  const comments = await response.json();
+  console.log(comments); 
+  const commentElement = document.getElementById('comment-container');
+  while(commentElement.firstChild){
+    commentElement.removeChild(commentElement.firstChild);
+  }
+  comments.forEach((comment) => {
+    commentElement.appendChild(createCommentElement(comment));
+    });
 }
 
 function createListElement(text) {
@@ -67,7 +71,7 @@ function createListElement(text) {
 }
 
 
-function createMessageElement(message) {
+function createCommentElement(message) {
   const messageElement = document.createElement('li');
   messageElement.className = 'message';
 
