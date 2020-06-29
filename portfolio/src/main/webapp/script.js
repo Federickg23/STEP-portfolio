@@ -41,3 +41,53 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function welcomeMessage() {
+  fetch('/welcome').then(response => response.text()).then((quote) => {
+    document.getElementById('welcome').innerText = quote;
+  });
+}
+
+async function getMessages() { 
+  var url = '/data?max-comments=';
+  url+=document.getElementById('max-comments').value;
+  console.log(url);
+  const response = await fetch(url);
+  const comments = await response.json();
+  console.log(comments); 
+  const commentElement = document.getElementById('comment-container');
+  while(commentElement.firstChild){
+    commentElement.removeChild(commentElement.firstChild);
+  }
+  comments.forEach((comment) => {
+    commentElement.appendChild(createCommentElement(comment));
+    });
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
+
+function createCommentElement(message) {
+  const messageElement = document.createElement('li');
+  messageElement.className = 'message';
+
+  const titleElement = document.createElement('span');
+  titleElement.innerText = message.message;
+  /*
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteMessage(message);
+
+    // Remove the task from the DOM.
+    messageElement.remove();
+  });
+ */
+  messageElement.appendChild(titleElement);
+  //messageElement.appendChild(deleteButtonElement);
+  return messageElement;
+}
