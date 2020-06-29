@@ -10,11 +10,33 @@
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
-// limitations under the License.
+// limitations under the Licens
 
-/**
- * Adds a random greeting to the page.
- */
+async function userLogin(){
+    const response = await fetch('/login');
+    console.log(response);
+    const text = await response.text();
+    var loginVal = text.toString().trim();
+    console.log(loginVal);
+    if (loginVal.localeCompare("true")==0){
+        console.log("user is logged in");
+        document.getElementById("classified").style.display='block';
+        document.getElementById("general").style.display="none";
+
+    }
+    else if (loginVal.localeCompare("false")==0){
+        console.log("user is not logged in");
+        document.getElementById("classified").style.display='none';
+        document.getElementById("general").style.display="block";
+
+    }
+    else{
+        console.log("Something went wrong");
+        console.log(loginVal);
+        console.log(loginVal.localeCompare("true"));
+    }
+
+}
 
 function Random() {
     var rnd = Math.floor(Math.random() * 20 + 1);
@@ -43,7 +65,8 @@ function addRandomGreeting() {
 }
 
 function welcomeMessage() {
-  fetch('/welcome').then(response => response.text()).then((quote) => {
+    userLogin();
+    fetch('/welcome').then(response => response.text()).then((quote) => {
     document.getElementById('welcome').innerText = quote;
   });
 }
