@@ -77,17 +77,24 @@ function createCommentElement(message) {
 
   const titleElement = document.createElement('span');
   titleElement.innerText = message.message;
-  /*
+  
   const deleteButtonElement = document.createElement('button');
   deleteButtonElement.innerText = 'Delete';
   deleteButtonElement.addEventListener('click', () => {
-    deleteMessage(message);
+    deleteComment(message);
 
     // Remove the task from the DOM.
     messageElement.remove();
   });
- */
+ 
   messageElement.appendChild(titleElement);
-  //messageElement.appendChild(deleteButtonElement);
+  messageElement.appendChild(deleteButtonElement);
   return messageElement;
+}
+
+function deleteComment(comment){
+    const params = new URLSearchParams();
+    params.append('id', comment.id); 
+    fetch('/delete-comment', {method: 'POST', body: params});
+
 }
