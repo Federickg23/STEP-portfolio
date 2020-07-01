@@ -31,7 +31,7 @@ public class Login extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     String urlToRedirectToAfterUserLogsOut = "/index.html";
     String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
-    System.out.println(logoutUrl);
+    //System.out.println(logoutUrl);
 
 /*if (userService.isUserLoggedIn()) {
     
@@ -48,7 +48,7 @@ public class Login extends HttpServlet {
       response.getWriter().println("<p>Hello stranger.</p>");
       response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
     }*/
-    System.out.println(userService.isUserLoggedIn());
+    //System.out.println(userService.isUserLoggedIn());
     response.getWriter().println(userService.isUserLoggedIn()); 
   }
 }
