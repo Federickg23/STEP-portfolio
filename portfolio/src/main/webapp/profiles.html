@@ -7,6 +7,10 @@
     <link rel="icon" href="images/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
     <script src="script.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcremJUA7EdmNHDJYnUIeZ67iVnC6d6Js&callback=initMap">
+    </script>
+      
   </head>
   <body onload="getMessages()">
     <div class="header">
@@ -110,7 +114,12 @@
       <input type="submit" />
 
   </form>
-  
+  <div class="comments" >
   <ul id="comment-container"></ul>
+  </div>
+
+  <div id="map"></div>
+
+  <div style="height:40px">
   </body>
-</html>
+</html>Z

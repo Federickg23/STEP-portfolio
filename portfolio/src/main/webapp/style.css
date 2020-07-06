@@ -1,3 +1,28 @@
+#map {
+    width: 70%;
+    margin: auto;
+    min-height: 700px;
+}
+.comments {
+    width: 60%;
+    margin: auto;
+}
+.comments ul{
+    list-style-type:none;
+    display:flex;
+    flex-direction: column;
+}
+.comments li{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom:10px;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+
 .row {
   display: flex;
   flex-wrap: wrap;
