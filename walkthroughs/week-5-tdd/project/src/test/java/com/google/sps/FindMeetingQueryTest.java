@@ -353,7 +353,7 @@ public final class FindMeetingQueryTest {
   }
 
   @Test 
-  public void noMandatoryAttendees(){
+  public void onlyOptionalWithGaps(){
      // Two optional attendees with gaps in their schedule. 
      // 
      Collection<Event> events = Arrays.asList(
@@ -373,6 +373,23 @@ public final class FindMeetingQueryTest {
 
     Assert.assertEquals(expected, actual);
 
+  }
+
+  @Test 
+  public void onlyOptionalWithoutGaps(){
+    // Two optional attendees with no gaps in their schedule.  
+    
+    Collection<Event> events = Arrays.asList(
+        new Event("Event 1", TimeRange.WHOLE_DAY, Arrays.asList(PERSON_A,PERSON_B)));
+
+    MeetingRequest request = new MeetingRequest(NO_ATTENDEES, DURATION_60_MINUTES);
+        request.addOptionalAttendee(PERSON_A);
+        request.addOptionalAttendee(PERSON_B);
+
+    Collection<TimeRange> actual = query.query(events, request);
+    Collection<TimeRange> expected = Arrays.asList(); 
+
+    Assert.assertEquals(expected, actual); 
 
 
   }
