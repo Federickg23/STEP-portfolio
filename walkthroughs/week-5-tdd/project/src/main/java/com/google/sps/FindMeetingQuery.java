@@ -35,29 +35,28 @@ public final class FindMeetingQuery {
             return validRanges;
         }
     
-        Collection<TimeRange> conflicts = getConflicts(events, request, false);
+        Collection<TimeRange> conflicts = getConflicts(events, request);
         Collections.sort((ArrayList) conflicts, TimeRange.ORDER_BY_START); 
 
         validRanges = getValidRanges(conflicts, meetingDuration);
 
         if (!request.getOptionalAttendees().isEmpty()){
              if(validRanges.contains(TimeRange.WHOLE_DAY)){
-                validRanges = getValidRanges(getConflicts(events, request, true), meetingDuration); 
+                
+                validRanges = getValidRanges(getOptionalConflicts(events, request), meetingDuration); 
              }
              else{
-                validRanges = getOptionalValidRanges(events, validRanges, request); 
-
+                validRanges = getOptionalValidRanges(events, validRanges, request);
              }
-            
         }
         //throw new UnsupportedOperationException("TODO: Implement this method.");
         return validRanges;
-        
     }
 
     private Collection<TimeRange> getOptionalValidRanges(Collection<Event> events, Collection <TimeRange> validRanges, MeetingRequest request){
-        Collection<TimeRange> conflictingOptionalRanges = getConflicts(events, request, true); 
+        Collection<TimeRange> conflictingOptionalRanges = getOptionalConflicts(events, request); 
         Collection<TimeRange> validOptionalRanges = new ArrayList<>(); 
+        
 
         for(TimeRange validRange : validRanges){
             boolean valid = true; 
@@ -122,17 +121,9 @@ public final class FindMeetingQuery {
     }
 
 
-    private Collection<TimeRange> getConflicts(Collection<Event> events, MeetingRequest request, boolean isOptional){
+    private Collection<TimeRange> getConflicts(Collection<Event> events, MeetingRequest request){
         Collection<TimeRange> conflicts = new ArrayList<>(); 
-        Collection<String> attendees;
-        
-        if(isOptional){
-            attendees = new ArrayList<String>(request.getOptionalAttendees());
-        }
-        else{
-            attendees = new ArrayList<String>(request.getAttendees());
-
-        }
+        Collection<String> attendees = new ArrayList<String>(request.getAttendees());
 
         for (Event event: events){
             TimeRange eventTime = event.getWhen();
@@ -149,4 +140,33 @@ public final class FindMeetingQuery {
 
         return conflicts; 
     }
+
+ 
+    private Collection<TimeRange> getOptionalConflicts(Collection<Event> events, MeetingRequest request){
+        Collection<TimeRange> conflicts = new ArrayList<>(); 
+        Collection<String> attendees = new ArrayList<String>(request.getOptionalAttendees());
+        int numAttendees = attendees.size();
+        
+        //Gets the times that conflict with a majority of optional attendees, so that there are more time frames for the meeting. 
+        for (Event event: events){
+            TimeRange eventTime = event.getWhen();
+            Set<String> busyAttendees = new HashSet<String>(event.getAttendees());   
+            int busy = 0;
+            for ( String attendee : attendees ) {
+                if(busyAttendees.contains(attendee)){
+                    busy +=1; 
+                    if(busy >= numAttendees/3){
+                        conflicts.add(eventTime);
+                        break;
+                    }
+                
+                }
+            }
+        }
+        return conflicts; 
+    }
+
+       
+
 }
+
