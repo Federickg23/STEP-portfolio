@@ -31,7 +31,7 @@ public final class FindMeetingQuery {
 
         //Requests shouldn't last longer than a day, so no valid times if the meeting is
         //set as lnoger than a day 
-        if(meetingDuration > TimeRange.WHOLE_DAY.duration()){
+        if (meetingDuration > TimeRange.WHOLE_DAY.duration()){
             return validRanges;
         }
     
@@ -41,11 +41,10 @@ public final class FindMeetingQuery {
         validRanges = getValidRanges(conflicts, meetingDuration);
 
         if (!request.getOptionalAttendees().isEmpty()){
-             if(validRanges.contains(TimeRange.WHOLE_DAY)){
+             if (validRanges.contains(TimeRange.WHOLE_DAY)){
                 
                 validRanges = getValidRanges(getOptionalConflicts(events, request), meetingDuration); 
-             }
-             else{
+             } else {
                 validRanges = getOptionalValidRanges(events, validRanges, request);
              }
         }
@@ -58,26 +57,24 @@ public final class FindMeetingQuery {
         Collection<TimeRange> validOptionalRanges = new ArrayList<>(); 
         
 
-        for(TimeRange validRange : validRanges){
+        for (TimeRange validRange : validRanges){
             boolean valid = true; 
-            for(TimeRange invalidRange: conflictingOptionalRanges){
-                if(validRange.overlaps(invalidRange) || validRange.contains(invalidRange) || invalidRange.contains(validRange)){
+            for (TimeRange invalidRange: conflictingOptionalRanges){
+                if (validRange.overlaps(invalidRange) || validRange.contains(invalidRange) || invalidRange.contains(validRange)){
                     valid = false;
                 }
             }
-            if(valid){
+            if (valid){
                 validOptionalRanges.add(validRange);
             }    
         }
 
         //If the optional attendee has no free time, then resume as originally planned
-        if(validOptionalRanges.isEmpty()){
+        if (validOptionalRanges.isEmpty()){
             return validRanges;
         }
 
         return validOptionalRanges;
-
-
 
     }
     
@@ -91,15 +88,13 @@ public final class FindMeetingQuery {
         TimeRange oldRange = TimeRange.fromStartEnd(start, end, false); 
         
         
-        for(  TimeRange range: conflicts){
-            if(oldRange.contains(range)){
+        for (TimeRange range: conflicts){
+            if (oldRange.contains(range)){
                 oldRange = range; 
-            }
-            else if(oldRange.overlaps(range)){
+            } else if (oldRange.overlaps(range)){
                 start = range.end(); 
                 end = range.end();
-            }
-            else { 
+            } else { 
                 end = range.start();
                 TimeRange possibleRange = TimeRange.fromStartEnd(start, end, false); 
                 if (possibleRange.duration() >= meetingDuration){
@@ -112,7 +107,7 @@ public final class FindMeetingQuery {
         }
         
         TimeRange finalTime = TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true);
-        if( finalTime.duration() >= meetingDuration){
+        if (finalTime.duration() >= meetingDuration){
             potentialTimes.add(finalTime);
         }
         
@@ -130,7 +125,7 @@ public final class FindMeetingQuery {
             Set<String> busyAttendees = new HashSet<String>(event.getAttendees());
             
             for ( String attendee : attendees ) {
-                if(busyAttendees.contains(attendee)){
+                if (busyAttendees.contains(attendee)){
                     conflicts.add(eventTime);
                     break;
                 
@@ -153,9 +148,9 @@ public final class FindMeetingQuery {
             Set<String> busyAttendees = new HashSet<String>(event.getAttendees());   
             int busy = 0;
             for ( String attendee : attendees ) {
-                if(busyAttendees.contains(attendee)){
+                if (busyAttendees.contains(attendee)){
                     busy +=1; 
-                    if(busy >= numAttendees/3){
+                    if (busy >= numAttendees/3){
                         conflicts.add(eventTime);
                         break;
                     }
@@ -165,8 +160,6 @@ public final class FindMeetingQuery {
         }
         return conflicts; 
     }
-
-       
 
 }
 
