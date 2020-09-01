@@ -65,7 +65,9 @@ public class DataServlet extends HttpServlet {
     }
     System.out.println("Comments array size: ");
     System.out.println(comments.size());
-    while (comments.size() > amt) comments.remove(comments.size() - 1);
+    while (comments.size() > amt){
+      comments.remove(comments.size() - 1);
+    }
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
@@ -82,13 +84,13 @@ public class DataServlet extends HttpServlet {
     // Get the input from the form.
     String text = "";
     text = request.getParameter("comment");
-    try{
+    try {
         System.out.print(request.getParameter("max-comments")); 
         amt = Integer.parseInt(request.getParameter("max-comments"));
-    }catch(Exception e){
+    } catch (Exception e) {
         System.out.println(e);
     }
-    if(text != null && !text.isEmpty()){
+    if (text != null && !text.isEmpty()){
         messages.add(text);
         long timestamp = System.currentTimeMillis();
 
